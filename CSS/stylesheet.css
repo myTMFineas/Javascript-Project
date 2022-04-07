@@ -1,0 +1,5 @@
+/* Gebruikt om de meldingen te verbergen*/
+.hidden{
+    overscroll-behavior: block;
+    display: none;
+}
