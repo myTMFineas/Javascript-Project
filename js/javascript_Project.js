@@ -2,6 +2,7 @@
  Hieronder vindt u een paar links dat ik het meest gebruikt heb
 - https://stackoverflow.com/questions
 - https://www.w3schools.com/
+- Cursus Javascript
 */
 
 
@@ -32,26 +33,26 @@ function ValidatieForm() {
 
 
         // De errors die de gebruiker ziet als hij niets invult
-        checkEmptyField(document.forms["formID"]["achternaam"].value, "-Het veld achternaam is vereist!" + "<br/>");
-        checkEmptyField(document.forms["formID"]["voornaam"].value, "-Het veld voornaam is vereist!" + "<br/>");
-        checkEmptyField(document.forms["formID"]["inlineFormInputGroupUsername2"].value, "-Het veld gebruikersnaam is vereist!" + "<br/>");
-        checkEmptyField(document.forms["formID"]["inputAddress"].value, "-Het veld adres is vereist!" + "<br/>");
-        checkEmptyField(document.forms["formID"]["inputZip"].value, "-Het veld postcode is vereist!" + "<br/>");
-        checkEmptyField(document.forms["formID"]["inputPassword5"].value, "-Het veld wachtwoord is vereist!" + "<br/>");
-        checkEmptyField(document.forms["formID"]["inputPassword6"].value, "-Het veld herhaal wachtwoord is vereist!" + "<br/>");
+        checkEmptyField(document.forms["formPE"]["achternaam"].value, "-Het veld achternaam is vereist!" + "<br/>");
+        checkEmptyField(document.forms["formPE"]["voornaam"].value, "-Het veld voornaam is vereist!" + "<br/>");
+        checkEmptyField(document.forms["formPE"]["inlineFormInputGroupUsername2"].value, "-Het veld gebruikersnaam is vereist!" + "<br/>");
+        checkEmptyField(document.forms["formPE"]["inputAddress"].value, "-Het veld adres is vereist!" + "<br/>");
+        checkEmptyField(document.forms["formPE"]["inputZip"].value, "-Het veld postcode is vereist!" + "<br/>");
+        checkEmptyField(document.forms["formPE"]["inputPassword5"].value, "-Het veld wachtwoord is vereist!" + "<br/>");
+        checkEmptyField(document.forms["formPE"]["inputPassword6"].value, "-Het veld herhaal wachtwoord is vereist!" + "<br/>");
 
 
 
         // De 2 wachtwoorden vergelijken om te zien als ze overeen komen met elkaar
-        controleWachtwoord(document.forms["formID"]["inputPassword5"].value);
-        if (document.forms["formID"]["inputPassword5"].value != document.forms["formID"]["inputPassword6"].value) {
+        controleWachtwoord(document.forms["formPE"]["inputPassword5"].value);
+        if (document.forms["formPE"]["inputPassword5"].value != document.forms["formPE"]["inputPassword6"].value) {
                 arrayErrors.push("-De wachtwoorden komen niet overeen!" + "<br/>");
         }
 
 
 
         // validatieEmail aanroepen om de e-mail na te kijken als het voldoet, deze functie staat meer naar onder gedeclareerd
-        validateEmail(document.forms["formID"]["inputEmail4"].value);
+        validateEmail(document.forms["formPE"]["inputEmail4"].value);
 
 
 
@@ -64,7 +65,7 @@ function ValidatieForm() {
 
 
         // checkPC wordt aangeroepen, deze functie wordt vanonder gedeclareerd
-        checkPC(document.forms["formID"]["inputZip"].value);
+        checkPC(document.forms["formPE"]["inputZip"].value);
 
 
 
@@ -93,36 +94,12 @@ function ValidatieForm() {
                 document.getElementById("betalingswijze").classList.remove("hidden");
                 // Wanneer de gebruiker een betalingswijze kiest.
 
-                document.getElementById("idInfo").innerHTML = "Je betalingswijze is " + document.forms["formID"]["betaling"].value;
+                document.getElementById("idInfo").innerHTML = "Je betalingswijze is " + document.forms["formPE"]["betaling"].value;
 
         }
 
 
 };
-
-
-
-// Hier maak ik de functie ControleWachtwoord, deze functie controleert of dat de wachtwoord meer dan 7 karakters heeft
-function controleWachtwoord(veld) {
-        if (veld.length < 7) {
-                arrayErrors.push("-Het wachtwoord moet meer dan 7 karacters bevatten!" + "<br/>");
-        }
-}
-
-
-
-// Hier maak ik een functie om de email notatie te checken, ik heb de regex code van w3resource genomen, hieronder staat de link
-//https://www.w3resource.com/javascript/form/email-validation.php
-function validateEmail(emailadress) {
-        const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-        if (regex.test(emailadress) === false) {
-                arrayErrors.push("-E-mailadress is niet correct!" + "<br/>");
-        }
-        return regex.test(String(emailadress).toLowerCase());
-}
-
-
 
 // met de functie checkEmptyField kijken we of dat de velden ingevuld zijn, als ze niet ingevuld zijn wordt er een melding gestuurd naar arrayErrors
 function checkEmptyField(veld, melding) {
@@ -134,6 +111,13 @@ function checkEmptyField(veld, melding) {
         }
 }
 
+
+// Hier maak ik de functie ControleWachtwoord, deze functie controleert of dat de wachtwoord meer dan 7 karakters heeft
+function controleWachtwoord(veld) {
+        if (veld.length < 7) {
+                arrayErrors.push("-Het wachtwoord moet meer dan 7 karacters bevatten!" + "<br/>");
+        }
+}
 
 
 // Hier checken we of dat de Postcode tussen 1000 en 9999 is met behulp van de functie checkPC
@@ -150,3 +134,20 @@ function checkPC(veld) {
 
 
 }
+
+
+// Hier maak ik een functie om de email notatie te checken, ik heb de regex code van w3resource genomen, hieronder staat de link
+//https://www.w3resource.com/javascript/form/email-validation.php
+function validateEmail(emailadress) {
+        const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (regex.test(emailadress) === false) {
+                arrayErrors.push("-E-mailadress is niet correct!" + "<br/>");
+        }
+        return regex.test(String(emailadress).toLowerCase());
+}
+
+
+
+
+
